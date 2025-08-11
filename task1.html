@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Landing Page</title>
+    <style>
+        /* CSS Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #0056b3;
+            --bg-color: #f0f2f5;
+            --card-bg-color: #ffffff;
+            --text-color: #333333;
+            --light-text-color: #f8f9fa;
+            --header-bg-color-scrolled: #ffffff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            color: var(--light-text-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: var(--header-bg-color-scrolled);
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+        }
+        
+        .navbar.scrolled .logo {
+            color: var(--primary-color);
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--light-text-color);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: inherit; 
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .navbar.scrolled .nav-links a:hover,
+        .navbar.scrolled .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+
+        .navbar .nav-links a:hover::after,
+        .navbar .nav-links a.active::after {
+            width: 100%;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 123, 255, 0.7), rgba(0, 123, 255, 0.7)), url('https://source.unsplash.com/1600x900/?tech,abstract') no-repeat center center/cover;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: var(--light-text-color);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .section {
+            padding: 100px 50px;
+            min-height: 80vh;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .footer p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo {
+                font-size: 1.5rem;
+            }
+
+            .navbar .nav-links {
+                gap: 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .navbar .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar" id="main-nav">
+        <a href="#hero" class="logo"></a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Landing Page</h1>
+            <p>A professional and responsive design built with HTML, CSS, and JavaScript.</p>
+            <a href="#about" class="cta-btn">Learn More</a>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <h2>About Us</h2>
+        <p>This is a demonstration of an elegant landing page. Our goal is to provide high-quality web solutions that are both functional and aesthetically pleasing.</p>
+    </section>
+
+    <section class="section" id="services">
+        <h2>Our Services</h2>
+        <div class="section-cards">
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>Building responsive and modern websites from scratch using the latest technologies.</p>
+            </div>
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>Creating intuitive and user-friendly interfaces that provide an exceptional user experience.</p>
+            </div>
+            <div class="card">
+                <h3>Digital Marketing</h3>
+                <p>Helping businesses grow their online presence with data-driven strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us to start your next project. We're excited to hear from you!</p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy;Vivek Kumar</p>
+    </footer>
+
+    <script>
+        const navBar = document.getElementById('main-nav');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                navBar.classList.add('scrolled');
+            } else {
+                navBar.classList.remove('scrolled');
+            }
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.currentTarget.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - navBar.offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        handleScroll();
+    </script>
+
+</body>
+</html>
